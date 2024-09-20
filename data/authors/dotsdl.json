@@ -1,0 +1,14 @@
+{
+    "name": "David L. Dotson",
+    "image" : "img/dotsdl-avatar.jpg",
+    "bio": "Lead Developer // Datryllic LLC",
+    "social": [
+        { "github": "https://github.com/dotsdl" },
+        { "linkedin": "https://linkedin.com/in/dotsdl" },
+        { "x-twitter": "https://x.com/dotsdl" },
+        { "bluesky": "https://bsky.app/profile/dotsdl.bsky.social" },
+        { "orcid": "https://orcid.org/0000-0001-5879-2942" },
+        { "dev": "https://broaderthings.org" },
+        { "circle-info": "https://datryllic.com/about" }
+    ]
+}
