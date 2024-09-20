@@ -40,7 +40,7 @@ Interested in deploying and applying **alchemiscale** to your research or busine
 Check out our [documentation](https://docs.alchemiscale.org)!
 - the [Deployment](https://docs.alchemiscale.org/en/latest/deployment.html) and [Operations](https://docs.alchemiscale.org/en/latest/operations.html) guides should help you get up and running with a working **alchemiscale** instance
 - the [User Guide](https://docs.alchemiscale.org/en/latest/user_guide.html) offers general details on how to make use of your instance
-- the [Tutorials](https://docs.alchemiscale.org/en/latest/tutorials/index.html) give specific use cases that you can craft to your own needs
+- the [Tutorials](https://docs.alchemiscale.org/en/latest/tutorials/index.html) give specific use case examples that you can craft to your own needs
 
 If you encounter problems or have questions, drop us a message in our [Discussions](https://github.com/OpenFreeEnergy/alchemiscale/discussions) forum on GitHub.
 Our community can likely point you in the right direction quickly!
