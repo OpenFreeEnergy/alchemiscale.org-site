@@ -29,7 +29,7 @@ From April 2023 through April 2024, these organizations collectively performed o
 The project was co-developed alongside the [core OpenFE data model](https://github.com/OpenFreeEnergy/gufe), with the original objective to harness [Folding@Home](https://foldingathome.org/) for performing large-scale campaigns of protein-ligand binding free energy calculations. 
 The project's scope was expanded to take advantage of a broader range of general-purpose compute, including HPC, Kubernetes clusters, and individual workstations/servers.
 
-**alchemiscale** advancement is continues via an [OpenFE](https://openfree.energy/) working group led by [Datryllic](https://datryllic.com/).
+**alchemiscale** advancement continues via an [OpenFE](https://openfree.energy/) working group led by [Datryllic](https://datryllic.com/).
 Development and coordination occurs primarily via [GitHub](https://github.com/OpenFreeEnergy/alchemiscale), with the working group meeting every two weeks for discussion and decision-making.
 Notes from those meetings can be found publicly [here](https://github.com/OpenFreeEnergy/alchemiscale/discussions/categories/dev-group-meeting-notes).
 
