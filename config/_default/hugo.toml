@@ -3,7 +3,7 @@
 # https://blowfish.page/docs/getting-started/
 
 theme = "blowfish" # UNCOMMENT THIS LINE
-baseURL = "https://alchemiscale.org/"
+baseURL = ""
 languageCode = "en"
 defaultContentLanguage = "en"
 
