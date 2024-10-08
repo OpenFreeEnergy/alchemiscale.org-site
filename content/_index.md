@@ -54,4 +54,5 @@ Are you looking for ways to help advance **alchemiscale**?
 - if you're a developer, feel free to [introduce yourself](https://github.com/OpenFreeEnergy/alchemiscale/discussions/categories/new-contributors) and your interests, and we can help get you started
 - if you're a user, you can help us greatly by helping other users with their questions on our [Discussions](https://github.com/OpenFreeEnergy/alchemiscale/discussions) forum
 
-Also check out our [Blog](http://localhost:1313/posts/) for news on happenings within the project, including opportunities to get involved!
+Also check out our [Opportunities]({{< ref "/opportunities" >}}) page for where you might be able to apply impactful effort,
+or our [Advancements]({{< ref "/advancements" >}}) page for news on happenings within the project, including ways to get involved!

@@ -11,10 +11,23 @@
 # ordered by weight from lowest to highest.
 
 [[main]]
-  name = "Blog"
-  pre = "fire"
-  pageRef = "posts"
+  name = "Project"
+  pre = "globe"
   weight = 10
+
+[[main]]
+  name = "Opportunities"
+  parent = "Project"
+  pre = "fire"
+  pageRef = "opportunities"
+  weight = 10
+
+[[main]]
+  name = "Advancements"
+  parent = "Project"
+  pre = "triangle-exclamation"
+  pageRef = "advancements"
+  weight = 15
 
 [[main]]
   name = "Docs"
@@ -33,14 +46,14 @@
   parent = "GitHub"
   pre = "edit"
   url = "https://github.com/OpenFreeEnergy/alchemiscale/issues"
-  weight = 45
+  weight = 40
 
 [[main]]
   name = "Discussions"
   parent = "GitHub"
   pre = "comment"
   url = "https://github.com/OpenFreeEnergy/alchemiscale/discussions"
-  weight = 40
+  weight = 45
 
 [[main]]
   name = "Dev Group Meeting Notes"
