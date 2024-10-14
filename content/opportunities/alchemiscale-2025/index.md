@@ -1,6 +1,6 @@
 ---
 title: 'advancement opportunities in 2025'
-date: "2024-10-07T00:00:00-00:00"
+date: "2024-10-15T00:00:00-00:00"
 authors: ["dotsdl"]
 draft: true
 ---
@@ -65,10 +65,10 @@ Most of these areas can be tackled independently from one another, but many can 
 
 1. [**visualization**]({{< ref "#visualization" >}})
 2. [**scalability**]({{< ref "#scalability" >}})
-3. [**living networks**]({{< ref "#living networks" >}})
-4. [**compute efficiency**]({{< ref "#compute efficiency" >}})
-5. [**compute introspection**]({{< ref "#compute introspection" >}})
-6. [**compute cost**]({{< ref "#compute cost" >}})
+3. [**living networks**]({{< ref "#living-networks" >}})
+4. [**compute efficiency**]({{< ref "#compute-efficiency" >}})
+5. [**compute introspection**]({{< ref "#compute-introspection" >}})
+6. [**compute cost**]({{< ref "#compute-cost" >}})
 7. [**operations**]({{< ref "#operations" >}})
 
 
@@ -181,7 +181,7 @@ To alleviate this, we propose several areas where effort could yield automated a
 
 ### living networks
 
-**ASAP Discovery** via the **Chodera Lab** is trialing the concept of "living networks" as a novel approach to enabling drug discovery via alchemical binding free energy calculations.
+**ASAP Discovery** via the **Chodera Lab** is trialing the concept of *living networks* as a novel approach to enabling drug discovery via alchemical binding free energy calculations.
 As a discovery program progresses, new synthetic designs are "added" to the same `AlchemicalNetwork`, iteratively growing it along with results for the `Transformation`s present.
 In principle this allows new designs to take advantage of existing results for similar designs already present in the network, and can be combined with experimental assay data via e.g. `cinnabar` to produce increasingly accurate binding affinity estimates at lower additional computational cost for new FEC calculations.
 
@@ -190,10 +190,21 @@ However, there are areas where additional effort could enable more flexibility f
 
 #### merging and copying `AlchemicalNetwork`s server-side
 
+The *living networks* pattern currently requires some discipline to make effective use of.
+An `AlchemicalNetwork` that aims to take advantage of existing `Transformation` results should be submitted to the same `Scope` as the `AlchemicalNetwork`(s) those results correspond to.
+Two related `AlchemicalNetwork`s cannot later be "merged" in such a way to take advantage of the available results from either.
 
+To address this, we propose adding additional `AlchemiscaleClient` methods that allow for server-side copying and merging of `AlchemicalNetwork`s from one or more `Scope`s to another.
+
+See [alchemiscale#221](https://github.com/OpenFreeEnergy/alchemiscale/issues/221) for more details.
 
 
 #### expanding living `AlchemicalNetwork`s with new protein structures
+
+A current pain point with the *living networks* pattern in practice is incorporating new protein structures as these become available, which is the case for structurally-enabled discovery programs.
+Many alchemical `Protocol`s assume that a `Transformation` features the same `ProteinComponent` within the `ChemicalSystem`s it spans, and a consequence of this is that it is not really possible to incorporate new protein structures with `Transformation` connections to old ones in the same `AlchemicalNetwork`.
+
+This isn't strictly an **alchemiscale** issue, but is instead a problem that will require solutions in [gufe](https://github.com/OpenFreeEnergy/gufe) and most `Protocol`s to take into account differences in `ProteinComponent`s across a `Transformation`.
 
 
 ### compute efficiency
@@ -269,6 +280,7 @@ However, when problems occur with `Protocol` execution, users currently have lim
 
 There are several ways we could provide better introspection, all of which are independent but complementary to each other.
 
+
 #### result file retention and retrieval
 
 A long-standing pain point for users is the inability to examine any file outputs from `ProtocolDAG`s that execute on remote compute,
@@ -277,30 +289,90 @@ A challenge with supporting result file retention and retrieval is the potential
 with some `Protocol`s routinely producing files 10s of GiB in size with default settings choices.
 If `alchemiscale` is to support retaining these files and making them available to users via the `AlchemiscaleClient`, the approach taken must put sane constraints on what is preserved and exposed.
 
+One approach that could work well is implemented in [gufe#186](https://github.com/OpenFreeEnergy/gufe/pull/186).
+This involves adding a third class of storage to the `Protocol` system, `permanent`, that `Protocol` authors can use for file outputs they would like preserved by the execution system.
+This allows `scratch` and `shared` storage to continue to persist over the life of individual `ProtocolUnit`s and the `ProtocolDAG`, respectively, which may require much larger files to be produced during simulation runs.
+It also gives a very clear signal to the `execution` system what should be preserved post-`ProtocolDAG` execution, requring no heuristics or guessing.
+
+If this becomes the accepted approach in `gufe`, then `alchemiscale` could support it rather easily.
+Compute services would upload all files in `permanent` to the object store after a `ProtocolDAG` completes (or fails),
+and the `AlchemiscaleClient` would expose methods for file listing and retrieval given a `Task`/`ProtocolDAGResult`.
+Optimizations for retrieval via signed-URL ([alchemiscale#45](https://github.com/OpenFreeEnergy/alchemiscale/issues/45)) would help to make this performent.
+The server can also be configured with limits on the size of individual files it will accept from a compute service, as well as the aggregate size of files in `permanent` prior to upload, to avoid unbounded storage requirements due to user settings choices.
 
 
 #### stdout, stderr retention
 
+In addition to result files, some `Protocol`s also emit [`stdout` and `stderr`](https://en.wikipedia.org/wiki/Standard_streams) outputs that feature valuable information that isn't caught in log streams.
+This may be especially true for `Protocol`s that run executables via subprocess and do not actively capture `stdout` or `stderr`.
+
+Preserving this information in a form retrievable by users could help in failure cases where the `ProtocolDAGResult` object nor the result files provide sufficient information on what is going wrong.
+
+Complementary to this, adding the ability for compute services to preserve the logging streams of a `ProtocolDAG` and its `ProtocolUnit`s would also give another mechanism for user introspection.
+
+
 #### host provenance
+
+As a way to understand performance issues, or to later produce throughput/usage metrics across different compute resources, it would be especially valuable to hold on to hardware and some software information from the host on which a `ProtocolDAG` was executed.
+
+See [alchemiscale#106](https://github.com/OpenFreeEnergy/alchemiscale/issues/106) for more information.
 
 
 ### compute cost
 
+When users prepare an `AlchemicalNetwork`, it isn't clear *a priori* how expensive compute-wise this will likely be to achieve actionable results.
+At best users must guess, and won't really know until they have performed enough `Task`s on the `AlchemicalNetwork` to satisfy their needs.
+
+It could be possible for **alchemiscale** to provide *a priori* estimates of an `AlchemicalNetwork`'s computational costs based on previously-computed ones, and this could also be made to account for existing results on matching `Transformation`s.
 
 
 #### prediction of `AlchemicalNetwork` computational cost based on compute consumed by previously-computed `AlchemicalNetwork`s
 
+Given additional [**host provenance**]({{< ref "#host-provenance" >}}) preserved from individual `ProtocolDAGResult`s, it could be possible to
+assemble statistics on the GPU-hr requirements for `Transformation`s of varying complexity and system sizes over time within a given **alchemiscale** instance.
+These statistics could then be used to train an estimator that could predict the computational costs (with uncertainties) of `Transformation`s in new `AlchemicalNetwork`s before they are even submitted, giving users some sense of how expensive the calculations they are about to launch are likely to be.
+
+This could be implemented as an additional service that iteratively trains its estimator(s) as results continue to accumulate, increasing its accuracy over time.
+This would also be performed server-side, with the only latency from user `AlchemiscaleClient` requests coming from inference with the estimator.
+
+
 #### prediction of `AlchemicalNetwork` computational cost accounting for existing `Transformation` results
 
+In addition to the above, since `AlchemicalNetwork`s submitted to the same `Scope` share `Transformation`s, and therefore results, the estimator could be made to only consider `Transformation`s that don't exist in the `Scope` a user intends to submit their `AlchemicalNetwork` into.
+This could help to give more accurate predictions of cost, especially for highly-iterative usage patterns like [**living networks**]({{< ref "#living-networks" >}}).
 
 
 ### operations
 
+In addition to the other areas above, there are more "boring" areas that could greatly improve **alchemiscale**'s operations model.
+
 #### tooling for performing data model migrations
+
+**alchemiscale** is an *execution system*, not an *archival system*, and this distinction encodes our guarantees to users on result retrievability as the data models **alchemiscale** depends on evolve.
+We currently have very little if any migration machinery in place for transitioning data models in an existing **alchemiscale** instance to new versions featured in e.g. [openfe](https://github.com/OpenFreeEnergy/openfe) or [feflow](https://github.com/OpenFreeEnergy/feflow).
+
+We should formalize the boundaries of our guarantees around support for data model updates in **alchemiscale** itself and common packages deployed with it,
+then build a framework for updating data models on deployed system in compliance with those guarantees.
 
 #### admin client/API for remote user management
 
+When an operator needs to add a new user to an existing **alchemiscale** instance, currently they must [run the `alchemiscale` CLI tool](https://docs.alchemiscale.org/en/latest/operations.html#adding-users) in an environment that can connect directly to the instance's Neo4j database.
+Since containerized deployments are the standard approach, this tends to require running these commands with `docker exec` or equivalent, adding complexity.
+
+Instead, we would like to introduce a new admin-facing client and API service that can be used for remotely performing user management.
+This would work the same way as the user-facing and compute-facing APIs, and would feature its own `admin` identity type as a way to separate permissioning from `user` and `compute` identities.
+The `alchemiscale` CLI could then make use of this admin client and API for its user management calls, removing the need for direct access to the database.
+
 #### user read, write, domain permissions
 
+Currently, any user with access to a given `Scope` can do whatever they like in that `Scope`: accessing results, creating new `AlchemicalNetwork`s and `Task`s, actioning `Task`s, etc.
+We would like to add more granular permissioning on top of simple `Scope` access, in particular `read`, `write`, and `domain` permission sets.
+
+The `write` permission set would be equivalent to the current permissions a user has on `Scope`s they have access to, while `read` would permit only API calls that make no modifications to the state of objects on the server.
+On top of `write`, the `domain` permission set would include the ability to add or remove access permissions to that `Scope` for other users, effectively allowing existing users to self-organize access to the `Scope`s they have `domain` access to.
+
+See [alchemiscale#43](https://github.com/OpenFreeEnergy/alchemiscale/issues/43) for more information.
 
 ## how do we do it?
+
+
