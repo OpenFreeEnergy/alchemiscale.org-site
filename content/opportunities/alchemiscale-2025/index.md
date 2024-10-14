@@ -399,5 +399,5 @@ We are happy to coordinate effort across any or all of these modes.
 If you're interested in engaging in any of these ways, get in touch on our [Discussions thread]()!
 We're grateful for your interest, and eager to support your contributions to **alchemiscale**.
 
-Together, we can make **alchemiscale** the premier execution for alchemical FECs now and into the future.
+Together, we can make **alchemiscale** the premier execution system for alchemical free energy calculations now and into the future.
 Cheers to an exciting 2025!
