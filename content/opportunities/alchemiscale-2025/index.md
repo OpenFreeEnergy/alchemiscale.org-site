@@ -93,7 +93,7 @@ Get in touch on our [Discussions thread](), and we'd be happy to help get you st
 **alchemiscale** features a powerful Python client that enables users to submit `AlchemicalNetwork`s, action and prioritize `Transformation`s for compute, and pull results as they become available.
 However, rich visualization of the state of **alchemiscale** and its calculations is not something the client will ever be capable of, given its nature as a simple HTTP interface.
 
-Administrators are even worse-off currently, as managing users on an **alchemiscale** instance requires execution of CLI commands against the server, which is often awkward and tedious. Tracking compute throughput also requires direct Cypher queries on the Neo4j database backend, requiring knowledge of Cypher to do this effectively, while also presenting the risk of destructive actions that could put the system in an unrecoverable, inconsistent state.
+Administrators are even worse-off currently, as managing users on an **alchemiscale** instance requires execution of CLI commands against the server, which is often awkward and tedious. Tracking compute throughput also requires direct [Cypher](https://en.wikipedia.org/wiki/Cypher_(query_language)) queries on the Neo4j database backend, requiring knowledge of Cypher to do this effectively, while also presenting the risk of destructive actions that could put the system in an unrecoverable, inconsistent state.
 
 To address these shortcoming, deployable web UIs that provide missing functionality for users and admin alike could be developed, offering alternative ways to interact with an **alchemiscale** deployment.
 
@@ -262,13 +262,13 @@ These include choosing to allocate compute based on:
 1. `Transformation`/`Mapping` score
 2. critical connectivity in the `AlchemicalNetwork`
 
-Exploring thes space of possibilities for different `Strategy`s would add richness to the portfolio of adaptive sampling approaches available.
+Exploring this space of possibilities for different `Strategy`s would add richness to the portfolio of adaptive sampling approaches available.
 Users can also experiment with `Strategy`s of their own locally, and enabling this via the `AlchemiscaleClient` is something we would like to spend effort on.
 
 
 #### `Strategy` stacking
 
-We are currently working on iniitial support for `Strategy`s (see [**where we are**]({{< ref "#where-we-are" >}})), but beyond this there may be a good case for being able to *stack* multiple `Strategy`s on a single `AlchemicalNetwork`.
+We are currently working on initial support for `Strategy`s (see [**where we are**]({{< ref "#where-we-are" >}})), but beyond this there may be a good case for being able to *stack* multiple `Strategy`s on a single `AlchemicalNetwork`.
 
 Instead of being limited to assigning a single parameterized `Strategy` to an `AlchemicalNetwork`, one could instead assign a (limited) set of them.
 These `Strategy`s would then each propose weights for which `Transformation`s effort should be applied next given current results, and these proposal weights will be aggregated to form the overall weights on which action is taken.
@@ -299,7 +299,7 @@ If **alchemiscale** is to support retaining these files and making them availabl
 One approach that could work well is implemented in [gufe#186](https://github.com/OpenFreeEnergy/gufe/pull/186).
 This involves adding a third class of storage to the `Protocol` system, `permanent`, that `Protocol` authors can use for file outputs they would like preserved by the execution system.
 This allows `scratch` and `shared` storage to continue to persist over the life of individual `ProtocolUnit`s and the `ProtocolDAG`, respectively, which may require much larger files to be produced during simulation runs.
-It also gives a very clear signal to the execution system what should be preserved post-`ProtocolDAG` execution, requring no heuristics or guessing.
+It also gives a very clear signal to the execution system what should be preserved post-`ProtocolDAG` execution, requiring no heuristics or guessing.
 
 If this becomes the accepted approach in **gufe**, then **alchemiscale** could support it rather easily.
 Compute services would upload all files in `permanent` to the object store after a `ProtocolDAG` completes (or fails),
@@ -351,15 +351,14 @@ This could help to give more accurate predictions of cost, especially for highly
 
 ### operations
 
-In addition to the other areas above, there are more "boring" areas that could greatly improve **alchemiscale**'s operations model.
+In addition to the other areas detailed above, there are several key areas that could significantly enhance **alchemiscale**'s operations model.
 
 #### tooling for performing data model migrations
 
 **alchemiscale** is an *execution system*, not an *archival system*, and this distinction loosely encodes our guarantees to users on result retrievability as the data models **alchemiscale** depends on evolve.
 We currently have very little if any migration machinery in place for transitioning data models in an existing **alchemiscale** instance to new versions featured in e.g. [**openfe**](https://github.com/OpenFreeEnergy/openfe) or [**feflow**](https://github.com/OpenFreeEnergy/feflow).
 
-We should formalize the boundaries of our guarantees around support for data model updates in **alchemiscale** itself and common packages deployed with it,
-then build a framework for updating data models on deployed systems in compliance with those guarantees.
+We should formalize the boundaries of our guarantees around support for data model updates in **alchemiscale** itself and common packages deployed with it, then build a framework for updating data models on deployed systems in compliance with those guarantees.
 
 #### admin client/API for remote user management
 
