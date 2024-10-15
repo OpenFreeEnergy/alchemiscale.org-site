@@ -1,6 +1,6 @@
 ---
 title: "opportunities"
-description: "annual opportunities for advancing alchemiscale"
+description: "opportunities for advancing alchemiscale"
 showWordCount: false
 showDate: false
 showReadingTime: false
@@ -15,7 +15,7 @@ cascade:
   showAuthorsBadges: false
 ---
 
-Each year, the **alchemiscale** core developer team publishes a perspective on where we've been, where we are, and where we might go in the coming year.
+Each year, the **alchemiscale** core developer team publishes a perspective on where we've been, where we are, and where we might go in the year to come.
 
 These opportunities for advancement represent the areas of highest value based on feedback from users and developers alike, and serve as raw material for coordinating effort and resources to pursue them.
 
