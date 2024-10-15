@@ -1,6 +1,6 @@
 ---
 title: 'advancement opportunities in 2025'
-date: "2024-10-14T00:00:00-00:00"
+date: "2024-10-15T00:00:00-00:00"
 authors: ["dotsdl"]
 draft: false
 ---
