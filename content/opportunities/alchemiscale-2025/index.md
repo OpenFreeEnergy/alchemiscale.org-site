@@ -6,7 +6,7 @@ draft: false
 ---
 
 This is a perspective on where we can take the **alchemiscale** project in 2025, given how far we've come and what is currently in development.
-If you have any questions on the content, would like to get involved in development, or would like to sponsor any of these advancements, get in touch on our [Discussions thread]()!
+If you have any questions on the content, would like to get involved in development, or would like to sponsor any of these advancements, get in touch on our [Discussions thread](https://github.com/OpenFreeEnergy/alchemiscale/discussions/315)!
 
 
 ## where we've been
@@ -80,12 +80,12 @@ Most of these areas can be tackled independently from one another, but many can 
 
 Do any of these speak to your needs?
 Is one of these blocking your use of **alchemiscale** today?
-Get in touch on our [Discussions thread]()!
+Get in touch on our [Discussions thread](https://github.com/OpenFreeEnergy/alchemiscale/discussions/315)!
 We'd love to hear about your needs and how our development activity can help **alchemiscale** to meet them.
 
 Are you a developer interested in contributing to **alchemiscale**?
 If any of these areas sound appealing to you, your help is more than welcome!
-Get in touch on our [Discussions thread](), and we'd be happy to help get you started.
+Get in touch on our [Discussions thread](https://github.com/OpenFreeEnergy/alchemiscale/discussions/315), and we'd be happy to help get you started.
 
 
 ### visualization
@@ -395,7 +395,7 @@ The **OpenFE** industry-funded project currently does not allocate its developer
 - individual developer effort, volunteered for personal or professional reasons
 
 We are happy to coordinate effort across any or all of these modes.
-If you're interested in engaging in any of these ways, get in touch on our [Discussions thread]()!
+If you're interested in engaging in any of these ways, get in touch on our [Discussions thread](https://github.com/OpenFreeEnergy/alchemiscale/discussions/315)!
 We're grateful for your interest, and eager to support your contributions to **alchemiscale**.
 
 Together, we can make **alchemiscale** the premier execution system for alchemical free energy calculations now and into the future.
