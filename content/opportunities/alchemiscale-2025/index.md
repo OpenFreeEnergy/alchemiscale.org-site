@@ -12,7 +12,7 @@ If you have any questions on the content, would like to get involved in developm
 ## where we've been
 
 We've come a long way since the **alchemiscale** project kicked off in early 2022.
-Originally concieved as a wrapper around [**Folding@Home**](https://foldingathome.org/) for performing alchemical binding free energy calculations routinely and at scale, the project co-evolved with the [**Open Free Energy (OpenFE)**](https://openfree.energy/) data model to become a general-purpose, high-throughput execution system that can take advantage of a variety of distributed compute.
+Originally conceived as a wrapper around [**Folding@Home**](https://foldingathome.org/) for performing alchemical binding free energy calculations routinely and at scale, the project co-evolved with the [**Open Free Energy (OpenFE)**](https://openfree.energy/) data model to become a general-purpose, high-throughput execution system that can take advantage of a variety of distributed compute.
 **alchemiscale** abstracts this compute away from users with a uniform interface, and is fully compatible with the [**OpenFE**](https://openfree.energy/) data model encoded in [**gufe**](https://github.com/OpenFreeEnergy/gufe).
 
 In April 2023, we deployed the first **alchemiscale** instance to `alchemiscale.org`.
