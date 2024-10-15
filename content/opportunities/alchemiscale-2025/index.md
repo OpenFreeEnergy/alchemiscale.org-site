@@ -2,7 +2,7 @@
 title: 'advancement opportunities in 2025'
 date: "2024-10-14T00:00:00-00:00"
 authors: ["dotsdl"]
-draft: true
+draft: false
 ---
 
 This is a perspective on where we can take the **alchemiscale** project in 2025, given how far we've come and what is currently in development.
