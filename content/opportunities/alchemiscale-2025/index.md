@@ -116,7 +116,7 @@ This same web UI could later be extended to allow users more than just read-only
 3. changing the `state` of an `AlchemicalNetwork`
 4. submitting serialized `AlchemicalNetwork`s produced with e.g. the `openfe` CLI
 
-This is an area where could use substantial help.
+This is an area where we could use substantial help.
 None of our current core developers are experienced in web UI development, and though building a read-only UI/dashboard might be possible for us using frameworks like [Plotly Dash](http://dash.plotly.com) or [Streamlit](https://streamlit.io), building a more full-featured UI will likely be more involved and require more expertise.
 
 
@@ -137,7 +137,7 @@ However, as these capabilities enable users to make heavier use of alchemical fr
 
 #### analysis bottlenecks
 
-Users of `alchemiscale.org`, in particular **ASAP Discovery**, have noted that as their `AlchemicalNetwork`s grow larger in size, it becomes increasingly painful to pull results for whole-network analyses, such such as MLE estimators featured in `cinnabar`.
+Users of `alchemiscale.org`, in particular **ASAP Discovery**, have noted that as their `AlchemicalNetwork`s grow larger in size, it becomes increasingly painful to pull results for whole-network analyses, such as MLE estimators featured in `cinnabar`.
 
 There are several independent optimizations that could be implemented to address this, which taken together would yield a much-improved user experience for analysis activity:
 1. client `ProtocolDAGResult` caching : [alchemiscale#59](https://github.com/OpenFreeEnergy/alchemiscale/issues/58)
