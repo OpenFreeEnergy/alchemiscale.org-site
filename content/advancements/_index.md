@@ -9,6 +9,10 @@ cascade:
   showReadingTime: true
   showWordCount: true
   showDate: true
+  showDateUpdated: true
+  showTableOfContents: true
+  showAuthor: false
+  showAuthorsBadges: false
 ---
 
 As we advance **alchemiscale** to enable new science and applied research, we do our best to periodically share our efforts here.
