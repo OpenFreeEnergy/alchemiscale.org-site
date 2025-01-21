@@ -1,8 +1,8 @@
 ---
 title: "Datryllic efforts for ASAP Discovery in 2025"
-date: "2025-01-12T00:00:00-00:00"
+date: "2025-01-21T00:00:00-00:00"
 authors: ["dotsdl"]
-draft: true
+draft: false
 ---
 
 
