@@ -57,8 +57,10 @@ As of this writing, our next major releases will focus on the following:
 Our aim is to produce one major release approximately each quarter, prioritizing features that align with each release's overall theme in service to our objectives.
 We may rebalance individual features across major releases as needed, but this is the overall principle we use to guide what is triaged into release milestones.
 
-In parallel to development on **alchemiscale** itself, **Datryllic** will also allocate development effort to [`alchemiscale-k8s`](https://github.com/datryllic/alchemiscale-k8s), in particular designing and implementing an approach to efficient compute service autoscaling on [Kubernetes](https://kubernetes.io/) clusters.
+In service to objective (3) **Datryllic** will also allocate development effort to [`alchemiscale-k8s`](https://github.com/datryllic/alchemiscale-k8s), in particular designing and implementing an approach to efficient compute service autoscaling on [Kubernetes](https://kubernetes.io/) clusters.
 The business logic of this approach may end up being reusable for developing an autoscaling approach for HPC, but this is yet to be seen.
+
+**Datryllic** is also committed to advancing use of [Folding@Home](https://foldingathome.org/) with **alchemiscale** via [`alchemiscale-fah`](https://github.com/OpenFreeEnergy/alchemiscale-fah), unlocking citizen-science, "planetary-scale" compute for projects that can make use of it.
 
 ## onward
 
