@@ -20,7 +20,7 @@ We are pleased to report that [**ASAP Discovery**](https://asapdiscovery.org/) h
 
 [**Datryllic**](https://datryllic.com/) will also continue to make robustness improvements to [Folding@Home-based execution](https://github.com/OpenFreeEnergy/alchemiscale-fah) over the course of 2025.
 
-{{< figure src="datryllic.svg" height=200 title="Datryllic" >}}
+{{< figure src="/img/datryllic.svg" height=200 title="Datryllic" >}}
 
 Looking to help advance **alchemiscale** further this year? Don't hesitate to reach out!
 You can engage with the **alchemiscale** project publicly via our [Discussions](https://github.com/OpenFreeEnergy/alchemiscale/discussions) forum, or if you'd like to engage [**Datryllic**](https://datryllic.com/), [reach out directly](mailto:info@datryllic.com).
