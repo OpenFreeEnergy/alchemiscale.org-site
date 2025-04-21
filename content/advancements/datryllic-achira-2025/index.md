@@ -1,9 +1,9 @@
 ---
 title: "Achira support for Datryllic's efforts in 2025"
-date: "2025-03-21T00:00:00-00:00"
+date: "2025-04-21T00:00:00-00:00"
 authors: ["dotsdl"]
 tags: ["resources"]
-draft: true
+draft: false
 ---
 
 In February, we published the **alchemiscale** project's [2025 roadmap]({{< ref "/roadmaps/alchemiscale-2025" >}}), detailing our objectives for the year, our available resources, and the path we intend to take to leverage these resources in service to those objectives.
