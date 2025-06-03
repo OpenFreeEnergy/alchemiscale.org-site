@@ -27,10 +27,12 @@ an_sk: ScopedKey          # an AlchemicalNetwork ScopedKey
 
 # rerun any `Task` that failed with a `RunTimeError`
 # or matched `MemoryError` at most 5 times
-asc.add_task_restart_patterns(an_sk,
-                              [r"RuntimeError: .+",
-                               r"MemoryError: Unable to allocate \d+ GiB"],
-                              5)
+asc.add_task_restart_patterns(
+        an_sk,
+        [r"RuntimeError: .+",
+        r"MemoryError: Unable to allocate \d+ GiB"],
+        5
+    )
 
 ```
 
