@@ -1,6 +1,6 @@
 ---
 title: "advancements in alchemiscale v0.6"
-date: "2025-04-21T00:00:00-00:00"
+date: "2025-06-02T00:00:00-00:00"
 authors: ["dotsdl"]
 tags: ["release"]
 showTableOfContents: false
@@ -22,7 +22,7 @@ Users can now set a restart policy for the `Task`s of an `AlchemicalNetwork` wit
 ```python
 from alchemiscale import AlchemiscaleClient, ScopedKey
 
-asc: AlchemiscaleClient
+asc: AlchemiscaleClient   # an existing AlchemiscaleClient instance
 an_sk: ScopedKey          # an AlchemicalNetwork ScopedKey
 
 # rerun any `Task` that failed with a `RunTimeError`
