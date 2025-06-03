@@ -5,9 +5,9 @@ description: ""
 
 {{< figure src="/img/alchemiscale-logo.png" title="alchemiscale logo" >}}
 
-## scalable alchemistry with OpenFE
+## scalable alchemistry with Open Free Energy
 
-**alchemiscale** is a distributed execution system for alchemical networks, and is part of the [OpenFreeEnergy (OpenFE)](https://openfree.energy/) ecosystem.
+**alchemiscale** is a distributed execution system for alchemical networks, and is part of the [Open Free Energy (OpenFE)](https://openfree.energy/) ecosystem.
 It is suitable for utilizing multiple compute resources, such as HPC clusters, Kubernetes clusters, individual hosts, Folding@Home work servers, etc., to support large campaigns requiring high-throughput.
 
 **alchemiscale** is fully open source under the permissive **MIT license**, allowing users to scale it as far as their infrastructure allows.
