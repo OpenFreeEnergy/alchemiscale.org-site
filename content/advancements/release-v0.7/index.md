@@ -22,7 +22,7 @@ Keep an eye out for [**alchemiscale-k8s**](https://github.com/OpenFreeEnergy/alc
 
 Second, we added the **`Strategist`** service, which enables automated execution of `Strategy` objects for `AlchemicalNetwork`s.
 A `Strategy` proposes where to apply additional compute given the set of results currently available for a given `AlchemicalNetwork`.
-Users can now submit a `Strategy` alongside their `AlchemicalNetwork`s, and the `Strategist` service will periodically apply it server-side to adaptively sample `Transformation`s until the `Strategy`'s stop thresholds are satisfied.
+Users can now assign a `Strategy` to any of their `AlchemicalNetwork`s, and the `Strategist` service will periodically apply it server-side to adaptively sample `Transformation`s until the `Strategy`'s stop thresholds are satisfied.
 
 This release also delivered substantial performance improvements for `AlchemicalNetwork` submission and retrieval via the `AlchemiscaleClient`.
 We optimized how `AlchemicalNetwork` objects are submitted to the state store, and implemented direct `KeyedChain` retrieval from Neo4j, making these operations notably faster for large networks.
