@@ -19,7 +19,7 @@ Now in its 25th year of operation, Folding@Home continues to advance science acr
 
 ## how it works: architecture for massive parallelism
 
-The integration required designing a specialized compute service that bridges alchemiscale's orchestration capabilities with Folding@Home's distributed execution model. We call this the `FAHComputeService`.
+The integration required designing a specialized compute service that bridges alchemiscale's orchestration capabilities with Folding@Home's distributed execution model. We call this the `FAHComputeService`, implemented in [alchemiscale-fah](https://github.com/OpenFreeEnergy/alchemiscale-fah).
 
 The key insight is task decomposition. When the `FAHComputeService` claims a free energy calculation task from alchemiscale, it breaks down the work into individual steps (called `ProtocolUnit`s):
 
