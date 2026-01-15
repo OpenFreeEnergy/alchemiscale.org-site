@@ -37,7 +37,8 @@ To validate this approach, we ran an ambitious benchmarking study using datasets
 In summary:
 - **8,208 total free energy calculations**
 - **4,104 on Folding@Home, 4,104 on conventional compute**
-- **1,012 transformations** completed successfully on both platforms
+- **1,012 ligand transformations** completed successfully on both platforms
+    - roughly half of these ligand in solvent, half ligand in complex with receptor
 
 ## the results: accuracy meets scale
 
@@ -68,19 +69,19 @@ The key is understanding when to leverage each resource:
 
 This integration opens exciting new possibilities:
 
-**Accelerated forcefield development**: The ability to run thousands of validation calculations quickly will speed up the testing and refinement of new molecular mechanics force fields.
+**Accelerated force field development**: The ability to run thousands of validation calculations quickly will speed up the testing and refinement of new molecular mechanics force fields.
 
 **Large-scale open science**: Folding@Home's citizen-science model aligns perfectly with open science drug discovery initiatives. Projects with limited access to conventional compute can now tap into massive computational resources.
 
-**Benchmarking at scale**: The OpenFE community can conduct more comprehensive benchmarks, testing methods and protocols across broader chemical spaces than previously practical.
+**Benchmarking at scale**: The OpenFE community can conduct more comprehensive benchmarks, testing methods across broader chemical spaces than previously practical.
 
-**Methods development**: Researchers developing new approaches to network planning, atom mapping, or transformation protocols can validate their ideas with statistically robust sample sizes.
+**Methods development**: Researchers developing new approaches to network planning and atom mapping can validate their ideas with statistically robust sample sizes.
 
 ## looking ahead
 
-The combination of **alchemiscale**'s orchestration capabilities and **Folding@Home**'s planetary-scale compute capacity represents a significant milestone for the OpenFE ecosystem. We're continuing to refine the integration and explore new use cases.
+The combination of **alchemiscale**'s orchestration capabilities and **Folding@Home**'s planetary-scale compute capacity represents a significant milestone for the OpenFE ecosystem. We're continuing to refine the integration and explore new use cases, and are interested in developing additional alchemical protocols beyond non-equilibrium cycling for use on Folding@Home.
 
-If you're working on projects that could benefit from massive parallelism—whether that's forcefield validation, large-scale drug discovery campaigns, or methods benchmarking—we'd love to hear from you. Join the conversation in our [GitHub Discussions](https://github.com/OpenFreeEnergy/alchemiscale/discussions) or reach out to the team.
+If you're working on projects that could benefit from massive parallelism—whether that's force field validation, large-scale drug discovery campaigns, or methods benchmarking—we'd love to hear from you. Join the conversation in our [GitHub Discussions](https://github.com/OpenFreeEnergy/alchemiscale/discussions) or reach out to the team.
 
 A huge thank you to the Folding@Home team for their support in making this integration possible, and to the thousands of volunteers whose generosity makes this platform possible.
 
