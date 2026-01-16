@@ -13,7 +13,7 @@ We recently presented this work at the [2025 Workshop on Free Energy Methods](ht
 
 ## the power of citizen science meets alchemical free energies
 
-[Folding@Home](https://foldingathome.org/) is a remarkable citizen-science platform that harnesses the collective power of volunteers' computers worldwide to run molecular dynamics simulations. During the COVID-19 pandemic, it became the **first exascale computing system**, reaching a staggering 2.43 exaflops of compute capacity. Among its many contributions, Folding@Home powered over 50,000 free energy calculations for the [COVID Moonshot](https://covid.postera.ai/covid) project, helping advance the search for a broadly-accessible COVID-19 antiviral.
+[Folding@Home](https://foldingathome.org/) is a remarkable citizen-science platform that harnesses the collective power of volunteers' computers worldwide to run molecular dynamics simulations. During the COVID-19 pandemic, it became the first exascale computing system, reaching a staggering 2.43 exaflops of compute capacity. Among its many contributions, Folding@Home powered over 50,000 free energy calculations for the [COVID Moonshot](https://covid.postera.ai/covid) project, helping advance the search for a broadly-accessible COVID-19 antiviral.
 
 Now in its 25th year of operation, Folding@Home continues to advance science across diverse applications—and we're thrilled to bring this incredible resource to the OpenFE ecosystem through **alchemiscale**.
 
@@ -23,18 +23,18 @@ The integration required designing a specialized compute service that bridges al
 
 The key insight is task decomposition. When the `FAHComputeService` claims a free energy calculation task from alchemiscale, it breaks down the work into individual steps (called `ProtocolUnit`s):
 
-- **Setup and analysis tasks** run locally via a process pool—these aren't suitable for Folding@Home's execution model
-- **Compute-intensive simulation tasks** get dispatched to Folding@Home, where they're distributed to volunteers worldwide
+- Setup and analysis steps run locally via a process pool—these aren't suitable for Folding@Home's distributed execution model
+- Compute-intensive simulation steps get dispatched to Folding@Home, where they're distributed to volunteers worldwide
 
-A single `FAHComputeService` can coordinate **thousands of concurrent calculations**, ensuring we keep Folding@Home well-fed with work whenever alchemiscale has tasks available. This architecture seamlessly extends alchemiscale's existing support for HPC clusters, Kubernetes deployments, and individual workstations.
+A single `FAHComputeService` can coordinate thousands of concurrent calculations, ensuring we keep Folding@Home well-fed with work whenever alchemiscale has tasks available. This architecture seamlessly extends alchemiscale's existing support for HPC clusters, Kubernetes deployments, and individual workstations.
 
 {{< figure src="figure-1-architecture.png" alt="System architecture diagram showing alchemiscale components and the FAHComputeService integration with Folding@Home" caption="**Figure 1**: System architecture for alchemiscale. Users interact with the server (green) from their workstations (blue), while compute services (red, violet, ochre) execute free energy calculations. The FAHComputeService (violet) intelligently partitions work between local execution (red ProtocolUnits) and Folding@Home distribution (blue simulation ProtocolUnits)." >}}
 
 ## putting it to the test: 8,208 free energy calculations
 
-To validate this approach, we ran an ambitious benchmarking study using datasets from the recent [OpenFE industry benchmark](https://github.com/OpenFreeEnergy/IndustryBenchmarks2024). Starting in April 2025, we prepared 21 alchemical networks spanning 4 public protein-ligand datasets (JACS, Fragments, MCS Docking, and Janssen BACE). For every ligand transformation, we ran **identical calculations** using the `NonEquilibriumCyclingProtocol` on both Folding@Home and conventional compute resources.
+To validate the accuracy and performance of this approach, we ran a benchmarking study to using datasets from the recent [OpenFE industry benchmark](https://github.com/OpenFreeEnergy/IndustryBenchmarks2024). Starting in April 2025, we prepared 21 alchemical networks spanning 4 public protein-ligand datasets (JACS, Fragments, MCS Docking, and Janssen BACE). For every ligand transformation, we ran identical calculations using the `NonEquilibriumCyclingProtocol` on both Folding@Home and conventional compute resources.
 
-In summary:
+In summary, this comprised of:
 - **8,208 total free energy calculations**
 - **4,104 on Folding@Home, 4,104 on conventional compute**
 - **1,012 ligand transformations** completed successfully on both platforms
@@ -49,7 +49,7 @@ Among the transformations that completed on both platforms, the differences betw
 - **Mean difference: <0.04 kcal/mol**
 - **Standard deviation: <0.60 kcal/mol**
 
-To put this in perspective, experimental binding affinity measurements typically have uncertainties around 0.5 kcal/mol. The Folding@Home results are **statistically indistinguishable** from conventional compute—exactly what we hoped to see.
+To put this in perspective, experimental binding affinity measurements typically have uncertainties around 0.5 kcal/mol. The Folding@Home results are statistically indistinguishable from conventional compute—exactly what we hoped to see.
 
 {{< figure src="figure-2-accuracy.png" alt="Violin plots showing distribution of free energy estimate differences between Folding@Home and conventional compute across four datasets" caption="**Figure 2**: Distribution of differences between Folding@Home and conventional compute free energy estimates across four public datasets (JACS, Fragments, MCS Docking, Janssen BACE). The tight distributions around zero demonstrate excellent agreement between platforms." >}}
 
@@ -57,13 +57,13 @@ To put this in perspective, experimental binding affinity measurements typically
 
 The performance story is more nuanced. Our approach to using Folding@Home does introduce additional latency compared to equivalently-provisioned conventional compute. This is expected given the distributed nature of the platform and the overhead of coordinating work across thousands of volunteer machines.
 
-However, the trade-off becomes compelling under the right conditions. When conventional compute resources are under high contention—a common scenario in production environments—Folding@Home can deliver substantially more parallelism. During our benchmark, we observed **over 2x the throughput** of all our available conventional compute.
+However, the trade-off becomes compelling under the right conditions. When conventional compute resources are under high contention—a common scenario in production environments—Folding@Home can deliver substantially more parallelism. During our benchmark, we observed over 2x the throughput of all our available conventional compute (comprised of two HPC clusters and one Kubernetes cluster).
 
 The key is understanding when to leverage each resource:
 - **Conventional compute**: Best when low latency is critical and resources are available
 - **Folding@Home**: Ideal for large-scale campaigns where maximizing parallelism matters more than individual task turnaround time
 
-{{< figure src="figure-3-throughput.png" alt="Graphs showing cumulative throughput over time and the difference between Folding@Home and conventional compute completion rates" caption="**Figure 3**: Throughput comparison over the benchmark period starting April, 2025. (a) Cumulative free energy calculations completed on each platform, showing Folding@Home (blue) and conventional compute (red) both contributing substantially to overall throughput. (b) Difference in completion counts, illustrating periods where Folding@Home provided additional capacity beyond conventional resources." >}}
+{{< figure src="figure-3-throughput.png" alt="Graphs showing cumulative throughput over time and the difference between Folding@Home and conventional compute completion rates" caption="**Figure 3**: Throughput comparison over the benchmark period starting April, 2025. (a) Cumulative free energy calculations completed on each platform, showing Folding@Home (blue) and conventional compute (red) both contributing substantially to overall throughput. (b) Difference in completion counts, illustrating the latency between task completion on Folding@Home vs. on conventional compute." >}}
 
 ## what this means for the OpenFE ecosystem
 
@@ -85,4 +85,5 @@ If you're working on projects that could benefit from massive parallelism—whet
 
 A huge thank you to the Folding@Home team for their support in making this integration possible, and to the thousands of volunteers whose generosity makes this platform possible.
 
-The full poster from this work is available [here](alchemistry-2025-poster-alchemiscale-and-folding-at-home.pdf).
+The full poster detailing this work is available [here](alchemistry-2025-poster-alchemiscale-and-folding-at-home.pdf).
+This work was developed by [**datryllic**](https://datryllic.com), with funding and direction via [**ASAP Discovery**](https://asapdiscovery.org) and the [**Open Molecular Software Foundation**](https://omsf.io).
