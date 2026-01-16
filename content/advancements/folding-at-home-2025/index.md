@@ -85,5 +85,7 @@ If you're working on projects that could benefit from massive parallelism—whet
 
 A huge thank you to the Folding@Home team for their support in making this integration possible, and to the thousands of volunteers whose generosity makes this platform possible.
 
+---
+
 The full poster detailing this work is available [here](alchemistry-2025-poster-alchemiscale-and-folding-at-home.pdf).
-This work was developed by [**datryllic**](https://datryllic.com), with funding and direction via [**ASAP Discovery**](https://asapdiscovery.org) and the [**Open Molecular Software Foundation**](https://omsf.io).
+This work was developed by [**datryllic**](https://datryllic.com), with funding and direction provided by [**ASAP Discovery**](https://asapdiscovery.org) and the [**Open Molecular Software Foundation**](https://omsf.io).
